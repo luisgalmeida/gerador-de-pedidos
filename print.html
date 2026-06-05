@@ -18,322 +18,238 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Barlow', sans-serif; background: #f0f0f0; }
 
-  body {
-    font-family: 'Barlow', sans-serif;
-    background: #f0f0f0;
-  }
-
-  /* ══════════════════════════════
-     HEADER DE TELA (some ao imprimir)
-  ══════════════════════════════ */
+  /* ── HEADER DE TELA ── */
   .screen-header {
     background: var(--red);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 20px;
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 14px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.25);
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    position: sticky; top: 0; z-index: 100;
+    overflow: hidden; /* impede scroll lateral */
   }
-
   .header-title {
     font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 2rem;
-    color: var(--white);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-right: 10px;
-  }
-
-  .screen-btn {
-    background: rgba(0,0,0,0.25);
-    color: var(--white);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 0.95rem;
-    letter-spacing: 1px;
-    padding: 7px 20px;
-    border: none;
-    cursor: pointer;
-    text-transform: uppercase;
-    border-radius: 20px;
-    transition: background 0.2s;
+    font-weight: 900; font-size: 1.8rem;
+    color: var(--white); text-transform: uppercase;
+    letter-spacing: 2px; margin-right: 6px;
     white-space: nowrap;
   }
-
+  .screen-btn {
+    background: rgba(0,0,0,0.25); color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 0.82rem;
+    letter-spacing: 0.8px; padding: 6px 14px;
+    border: none; cursor: pointer; text-transform: uppercase;
+    border-radius: 20px; transition: background 0.2s; white-space: nowrap;
+    flex-shrink: 0;
+  }
   .screen-btn:hover { background: rgba(0,0,0,0.4); }
   .btn-print { margin-left: auto; }
 
-  /* ══════════════════════════════
-     LAYOUT DE TELA — responsivo
-  ══════════════════════════════ */
+  /* ── LAYOUT DE TELA: empilhado no mobile, lado a lado no desktop ── */
   .page-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    padding: 16px;
-    align-items: center;
+    gap: 16px; padding: 16px; align-items: center;
+    overflow-x: hidden;
   }
 
-  /* cada via é um card independente na tela */
   .via {
-    width: 100%;
-    max-width: 600px;
+    width: 100%; max-width: 600px;
     border: 1.5px solid var(--border-dark);
-    display: flex;
-    flex-direction: column;
+    display: flex; flex-direction: column;
     background: white;
     box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-    font-size: 10pt;
+    overflow: hidden;
+  }
+
+  @media (min-width: 900px) {
+    .page-wrapper {
+      flex-direction: row;
+      align-items: flex-start;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .via {
+      flex: 1;
+      max-width: none;
+    }
   }
 
   /* ── CABEÇALHO DA VIA ── */
   .via-header {
     border-bottom: 1.5px solid var(--border-dark);
-    padding: 6px 10px 4px;
-    text-align: center;
+    padding: 4px 10px 3px; text-align: center;
+    flex-shrink: 0;
   }
-
   .via-header .empresa-label {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 8pt;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--text);
+    font-size: 9pt; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 2px; color: var(--text);
+    line-height: 1; margin-bottom: 0;
   }
-
   .via-header .empresa-nome {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 28pt;
-    font-weight: 900;
-    text-transform: uppercase;
-    line-height: 0.95;
-    letter-spacing: -1px;
-    margin: 2px 0;
-    color: var(--black);
+    font-size: 34pt; font-weight: 900;
+    text-transform: uppercase; line-height: 1;
+    letter-spacing: -1px; margin: 0; color: var(--black);
   }
+  .via-header .empresa-end { font-size: 7.5pt; color: var(--text); line-height: 1.2; }
 
-  .via-header .empresa-end {
-    font-size: 7.5pt;
-    color: var(--text);
-  }
-
-  /* ── INFO SECTION ── */
+  /* ── INFO ── */
   .info-section {
     border-bottom: 1.5px solid var(--border-dark);
+    flex-shrink: 0;
   }
-
   .info-row {
-    display: flex;
-    border-bottom: 1px solid var(--border);
-    min-height: 20px;
+    display: flex; border-bottom: 1px solid var(--border); min-height: 22px;
   }
-
   .info-row:last-child { border-bottom: none; }
-
   .info-lbl {
     font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 7.5pt;
-    text-transform: uppercase;
-    padding: 3px 6px;
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
+    font-weight: 700; font-size: 8pt; text-transform: uppercase;
+    padding: 3px 6px; white-space: nowrap;
+    display: flex; align-items: center;
     border-right: 1px solid var(--border);
-    background: var(--white);
-    color: var(--text-light);
-    min-width: 56px;
-    letter-spacing: 0.3px;
+    color: var(--text-light); min-width: 56px; letter-spacing: 0.3px;
   }
-
   .info-val {
-    flex: 1;
-    padding: 3px 6px;
-    font-size: 9pt;
-    display: flex;
-    align-items: center;
-    border-right: 1px solid var(--border);
-    color: var(--text);
+    flex: 1; padding: 3px 6px; font-size: 10pt;
+    display: flex; align-items: center;
+    border-right: 1px solid var(--border); color: var(--text);
   }
-
   .info-val:last-child { border-right: none; }
 
-  /* ── TABELA PRODUTOS ── */
-  .prod-table {
-    width: 100%;
-    border-collapse: collapse;
-    flex: 1;        /* cresce para ocupar todo espaço disponível na via */
-  }
-
-  .prod-table thead tr {
-    background: var(--black);
-    color: var(--white);
-  }
-
+  /* ── TABELA ── */
+  .prod-table-wrap { overflow-x: hidden; width: 100%; }
+  .prod-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+  .prod-table thead tr { background: var(--black); color: var(--white); }
   .prod-table thead th {
     font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 8pt;
-    text-transform: uppercase;
-    padding: 4px 6px;
-    text-align: left;
-    letter-spacing: 0.3px;
+    font-weight: 700; font-size: 8pt; text-transform: uppercase;
+    padding: 3px 6px; text-align: left; letter-spacing: 0.3px;
+    overflow: hidden; white-space: nowrap;
   }
-
-  .prod-table thead th:first-child { width: 44px; text-align: center; }
-  .prod-table thead th:nth-child(3) { width: 70px; text-align: right; }
-  .prod-table thead th:nth-child(4) { width: 70px; text-align: right; }
-
-  .prod-table tbody { height: 100%; }
-
+  .prod-table thead th:first-child  { width: 44px; text-align: center; }
+  .prod-table thead th:nth-child(3) { width: 100px; text-align: right; }
+  .prod-table thead th:nth-child(4) { width: 100px; text-align: right; }
   .prod-table tbody tr { border-bottom: 1px solid var(--border); }
-
   .prod-table tbody td {
-    padding: 3px 6px;
-    font-size: 9pt;
-    height: 18px;
-    color: var(--text);
+    padding: 1px 6px; font-size: 9pt; height: 14px; color: var(--text);
+    overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
   }
-
-  .prod-table tbody td:first-child { text-align: center; }
+  .prod-table tbody td:first-child  { text-align: center; }
   .prod-table tbody td:nth-child(3) { text-align: right; }
   .prod-table tbody td:nth-child(4) { text-align: right; font-weight: 600; }
 
   /* ── FOOTER ── */
   .via-footer {
     border-top: 1.5px solid var(--border-dark);
-    display: flex;
-    align-items: stretch;
-    min-height: 28px;
+    display: flex; align-items: stretch; min-height: 28px;
+    flex-shrink: 0;
   }
-
   .footer-assinatura {
-    flex: 1;
-    display: flex;
-    align-items: flex-end;
+    flex: 1; display: flex; align-items: flex-end;
     border-right: 1px solid var(--border);
-    padding: 4px 8px 5px 6px;
-    gap: 6px;
+    padding: 4px 8px 5px 6px; gap: 6px;
   }
-
   .footer-assinatura-lbl {
     font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 7.5pt;
-    text-transform: uppercase;
-    color: var(--text-light);
-    white-space: nowrap;
-    letter-spacing: 0.3px;
-    padding-bottom: 1px;
+    font-weight: 700; font-size: 7.5pt; text-transform: uppercase;
+    color: var(--text-light); white-space: nowrap; padding-bottom: 1px;
   }
-
   .footer-assinatura-linha {
-    flex: 1;
-    border-bottom: 1px solid var(--border-dark);
-    margin-bottom: 2px;
+    flex: 1; border-bottom: 1px solid var(--border-dark); margin-bottom: 2px;
   }
-
-  .footer-total {
-    display: flex;
-    align-items: center;
-  }
-
+  .footer-total { display: flex; align-items: center; }
   .footer-total-lbl {
     font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 7.5pt;
-    text-transform: uppercase;
-    padding: 4px 8px;
-    border-right: 1px solid var(--border);
-    color: var(--text-light);
-    white-space: nowrap;
+    font-weight: 700; font-size: 7.5pt; text-transform: uppercase;
+    padding: 4px 8px; border-right: 1px solid var(--border);
+    color: var(--text-light); white-space: nowrap;
   }
-
   .footer-total-val {
     font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 12pt;
-    padding: 4px 10px;
-    min-width: 80px;
-    text-align: right;
-    color: var(--black);
+    font-weight: 700; font-size: 12pt;
+    padding: 4px 10px; min-width: 80px;
+    text-align: right; color: var(--black);
   }
 
-  /* ══════════════════════════════
-     IMPRESSÃO — A4 paisagem, lado a lado
-  ══════════════════════════════ */
+  /* ════════════════════════════
+     IMPRESSÃO
+  ════════════════════════════ */
   @media print {
-    * {
-      -webkit-print-color-adjust: exact !important;
-      print-color-adjust: exact !important;
-    }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 
-    @page {
-      size: A4 landscape;
-      margin: 4mm;
-    }
+    @page { size: A4 landscape; margin: 6mm; }
 
-    body { background: white; }
+    html, body { height: 100%; background: white; }
 
     .screen-header { display: none !important; }
 
     .page-wrapper {
       display: flex;
       flex-direction: row;
-      gap: 5mm;
+      gap: 6mm;
       padding: 0;
       align-items: stretch;
       width: 100%;
       height: 100%;
+      overflow: hidden;
     }
 
     .via {
       flex: 1;
       max-width: none;
       box-shadow: none;
-      height: 100%;
+      display: flex;
+      flex-direction: column;
+      height: 198mm;
+      max-height: 198mm;
+      overflow: hidden;
       page-break-inside: avoid;
       break-inside: avoid;
     }
 
-    .via-header { padding: 4px 8px 3px; }
-    .via-header .empresa-nome  { font-size: 26pt; }
-    .via-header .empresa-label { font-size: 8pt; }
-    .via-header .empresa-end   { font-size: 7.5pt; }
+    .prod-table-wrap {
+      flex: 1;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
 
-    .info-lbl  { font-size: 8pt;   padding: 3px 5px; min-width: 52px; }
-    .info-val  { font-size: 9.5pt; padding: 3px 5px; }
-    .info-row  { min-height: 19px; }
+    .prod-table {
+      table-layout: fixed;
+      width: 100%;
+    }
 
-    .prod-table thead th { font-size: 9pt;   padding: 3px 5px; }
-    .prod-table tbody td { font-size: 9.5pt; padding: 2px 5px; height: 19px; }
-    .prod-table thead th:first-child  { width: 38px; }
-    .prod-table thead th:nth-child(3) { width: 65px; }
-    .prod-table thead th:nth-child(4) { width: 65px; }
+    /* mesma altura de linha da tela — sem distorção */
+    .prod-table tbody tr { height: 14px; }
 
-    .via-footer            { min-height: 28px; }
-    .footer-total-val      { font-size: 12pt; }
-    .footer-total-lbl      { font-size: 8pt; padding: 4px 8px; }
-    .footer-assinatura-lbl { font-size: 7.5pt; }
+    .prod-table tbody td {
+      font-size: 8.5pt;
+      padding: 0 5px;
+      height: 14px;
+    }
+
+    /* footer sempre no final */
+    .via-footer {
+      margin-top: auto;
+    }
   }
 </style>
 </head>
 <body>
 
-<!-- HEADER DE TELA -->
 <div class="screen-header">
   <span class="header-title">Nenzinho</span>
-  <button class="screen-btn" onclick="window.close()">← Voltar</button>
+  <button class="screen-btn" onclick="window.close()">Voltar</button>
   <button class="screen-btn btn-print" onclick="window.print()">Imprimir</button>
 </div>
 
-<!-- VIAS -->
 <div class="page-wrapper" id="page-wrapper">
 
   <!-- VIA 1 -->
@@ -365,17 +281,14 @@
         <div class="info-val" id="v1-obs"></div>
       </div>
     </div>
-    <table class="prod-table">
-      <thead>
-        <tr>
-          <th>Quant</th>
-          <th>Produto</th>
-          <th>Preço U.</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody id="v1-tbody"></tbody>
-    </table>
+    <div class="prod-table-wrap">
+      <table class="prod-table">
+        <thead><tr>
+          <th>Quant</th><th>Produto</th><th>Preço U.</th><th>Total</th>
+        </tr></thead>
+        <tbody id="v1-tbody"></tbody>
+      </table>
+    </div>
     <div class="via-footer">
       <div class="footer-assinatura">
         <span class="footer-assinatura-lbl">Assinatura:</span>
@@ -417,17 +330,14 @@
         <div class="info-val" id="v2-obs"></div>
       </div>
     </div>
-    <table class="prod-table">
-      <thead>
-        <tr>
-          <th>Quant</th>
-          <th>Produto</th>
-          <th>Preço U.</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody id="v2-tbody"></tbody>
-    </table>
+    <div class="prod-table-wrap">
+      <table class="prod-table">
+        <thead><tr>
+          <th>Quant</th><th>Produto</th><th>Preço U.</th><th>Total</th>
+        </tr></thead>
+        <tbody id="v2-tbody"></tbody>
+      </table>
+    </div>
     <div class="via-footer">
       <div class="footer-assinatura">
         <span class="footer-assinatura-lbl">Assinatura:</span>
@@ -447,36 +357,28 @@
     return val.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
   }
 
-  function renderVia(prefix, pedido) {
+  function renderVia(prefix, pedido, nLinhas) {
     document.getElementById(`${prefix}-cliente`).textContent = pedido.cliente || '';
-    document.getElementById(`${prefix}-end`).textContent = pedido.end || '';
-    document.getElementById(`${prefix}-tel`).textContent = pedido.tel || '';
-    document.getElementById(`${prefix}-data`).textContent = pedido.data || '';
-    document.getElementById(`${prefix}-vw`).textContent = pedido.vw || '';
-    document.getElementById(`${prefix}-obs`).textContent = pedido.obs || '';
+    document.getElementById(`${prefix}-end`    ).textContent = pedido.end     || '';
+    document.getElementById(`${prefix}-tel`    ).textContent = pedido.tel     || '';
+    document.getElementById(`${prefix}-data`   ).textContent = pedido.data    || '';
+    document.getElementById(`${prefix}-vw`     ).textContent = pedido.vw      || '';
+    document.getElementById(`${prefix}-obs`    ).textContent = pedido.obs     || '';
 
     const tbody = document.getElementById(`${prefix}-tbody`);
     tbody.innerHTML = '';
-
-    const MIN_ROWS = 28;
     let total = 0;
 
-    const produtos = pedido.produtos || [];
-    produtos.forEach(p => {
+    (pedido.produtos || []).forEach(p => {
       const sub = p.quant * p.preco;
       total += sub;
       const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td>${p.quant}</td>
-        <td>${p.produto}</td>
-        <td>${formatBRL(p.preco)}</td>
-        <td>${formatBRL(sub)}</td>
-      `;
+      tr.innerHTML = `<td>${p.quant}</td><td>${p.produto}</td><td>${formatBRL(p.preco)}</td><td>${formatBRL(sub)}</td>`;
       tbody.appendChild(tr);
     });
 
-    // Completa até 24 linhas fixas
-    for (let i = produtos.length; i < MIN_ROWS; i++) {
+    const filled = (pedido.produtos || []).length;
+    for (let i = filled; i < nLinhas; i++) {
       const tr = document.createElement('tr');
       tr.innerHTML = `<td></td><td></td><td></td><td></td>`;
       tbody.appendChild(tr);
@@ -489,16 +391,14 @@
     const raw = localStorage.getItem('pedido_nenzinho');
     if (!raw) {
       document.getElementById('page-wrapper').innerHTML =
-        '<p style="padding:40px;color:#999;text-align:center">Nenhum pedido encontrado. Volte ao sistema e clique em Imprimir.</p>';
+        '<p style="padding:40px;color:#999;text-align:center">Nenhum pedido encontrado.</p>';
       return;
     }
     try {
       const pedido = JSON.parse(raw);
-      renderVia('v1', pedido);
-      renderVia('v2', pedido);
-    } catch(e) {
-      console.error(e);
-    }
+      renderVia('v1', pedido, 35);
+      renderVia('v2', pedido, 35);
+    } catch(e) { console.error(e); }
   });
 </script>
 </body>
