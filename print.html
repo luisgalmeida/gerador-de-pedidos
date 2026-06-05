@@ -168,7 +168,7 @@
   .prod-table {
     width: 100%;
     border-collapse: collapse;
-    flex: 1;
+    flex: 1;        /* cresce para ocupar todo espaço disponível na via */
   }
 
   .prod-table thead tr {
@@ -189,6 +189,8 @@
   .prod-table thead th:first-child { width: 44px; text-align: center; }
   .prod-table thead th:nth-child(3) { width: 70px; text-align: right; }
   .prod-table thead th:nth-child(4) { width: 70px; text-align: right; }
+
+  .prod-table tbody { height: 100%; }
 
   .prod-table tbody tr { border-bottom: 1px solid var(--border); }
 
@@ -274,7 +276,7 @@
 
     @page {
       size: A4 landscape;
-      margin: 6mm;
+      margin: 4mm;
     }
 
     body { background: white; }
@@ -283,8 +285,8 @@
 
     .page-wrapper {
       display: flex;
-      flex-direction: row;        /* vias lado a lado */
-      gap: 6mm;
+      flex-direction: row;
+      gap: 5mm;
       padding: 0;
       align-items: stretch;
       width: 100%;
@@ -295,26 +297,30 @@
       flex: 1;
       max-width: none;
       box-shadow: none;
-      font-size: 8pt;
-      /* garante que não quebre para segunda página */
+      height: 100%;
       page-break-inside: avoid;
       break-inside: avoid;
     }
 
-    /* ajusta tamanhos de fonte para caber no A4 */
-    .via-header .empresa-nome { font-size: 22pt; }
-    .via-header .empresa-label { font-size: 7pt; }
-    .via-header .empresa-end { font-size: 6.5pt; }
-    .info-lbl { font-size: 6.5pt; padding: 2px 4px; min-width: 48px; }
-    .info-val { font-size: 7.5pt; padding: 2px 4px; }
-    .info-row { min-height: 16px; }
-    .prod-table thead th { font-size: 7pt; padding: 2px 4px; }
-    .prod-table tbody td { font-size: 7.5pt; padding: 1px 4px; height: 14px; }
-    .prod-table thead th:first-child { width: 34px; }
-    .prod-table thead th:nth-child(3) { width: 54px; }
-    .prod-table thead th:nth-child(4) { width: 54px; }
-    .footer-total-val { font-size: 10pt; }
-    .footer-assinatura-lbl { font-size: 6.5pt; }
+    .via-header { padding: 4px 8px 3px; }
+    .via-header .empresa-nome  { font-size: 26pt; }
+    .via-header .empresa-label { font-size: 8pt; }
+    .via-header .empresa-end   { font-size: 7.5pt; }
+
+    .info-lbl  { font-size: 8pt;   padding: 3px 5px; min-width: 52px; }
+    .info-val  { font-size: 9.5pt; padding: 3px 5px; }
+    .info-row  { min-height: 19px; }
+
+    .prod-table thead th { font-size: 9pt;   padding: 3px 5px; }
+    .prod-table tbody td { font-size: 9.5pt; padding: 2px 5px; height: 19px; }
+    .prod-table thead th:first-child  { width: 38px; }
+    .prod-table thead th:nth-child(3) { width: 65px; }
+    .prod-table thead th:nth-child(4) { width: 65px; }
+
+    .via-footer            { min-height: 28px; }
+    .footer-total-val      { font-size: 12pt; }
+    .footer-total-lbl      { font-size: 8pt; padding: 4px 8px; }
+    .footer-assinatura-lbl { font-size: 7.5pt; }
   }
 </style>
 </head>
@@ -452,7 +458,7 @@
     const tbody = document.getElementById(`${prefix}-tbody`);
     tbody.innerHTML = '';
 
-    const MIN_ROWS = 20;
+    const MIN_ROWS = 28;
     let total = 0;
 
     const produtos = pedido.produtos || [];
@@ -469,6 +475,7 @@
       tbody.appendChild(tr);
     });
 
+    // Completa até 24 linhas fixas
     for (let i = produtos.length; i < MIN_ROWS; i++) {
       const tr = document.createElement('tr');
       tr.innerHTML = `<td></td><td></td><td></td><td></td>`;
