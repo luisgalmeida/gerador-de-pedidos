@@ -15,11 +15,6 @@
     --border-dark: #333333;
     --text: #222222;
     --text-light: #888;
-    --gray: #f5f5f5;
-    --radius: 10px;
-    --radius-sm: 6px;
-    --shadow: 0 2px 12px rgba(0,0,0,0.08);
-    --shadow-md: 0 4px 20px rgba(0,0,0,0.13);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -29,7 +24,9 @@
     background: #f0f0f0;
   }
 
-  /* ── SCREEN HEADER ── */
+  /* ══════════════════════════════
+     HEADER DE TELA (some ao imprimir)
+  ══════════════════════════════ */
   .screen-header {
     background: var(--red);
     display: flex;
@@ -69,70 +66,60 @@
   }
 
   .screen-btn:hover { background: rgba(0,0,0,0.4); }
+  .btn-print { margin-left: auto; }
 
-  .btn-print {
-    margin-left: auto;
-    background: rgba(0,0,0,0.25);
-  }
-
-  /* ── PAGE WRAPPER ── */
+  /* ══════════════════════════════
+     LAYOUT DE TELA — responsivo
+  ══════════════════════════════ */
   .page-wrapper {
     display: flex;
-    justify-content: center;
-    padding: 20px;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    align-items: center;
   }
 
-  /* ── A4 LANDSCAPE ── */
-  .a4-page {
-    width: 297mm;
-    min-height: 210mm;
-    background: white;
-    display: flex;
-    gap: 6mm;
-    padding: 8mm;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-  }
-
-  /* ── VIA ── */
+  /* cada via é um card independente na tela */
   .via {
-    flex: 1;
+    width: 100%;
+    max-width: 600px;
     border: 1.5px solid var(--border-dark);
     display: flex;
     flex-direction: column;
-    font-size: 9pt;
+    background: white;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    font-size: 10pt;
   }
 
   /* ── CABEÇALHO DA VIA ── */
   .via-header {
     border-bottom: 1.5px solid var(--border-dark);
-    padding: 5px 8px 4px;
+    padding: 6px 10px 4px;
     text-align: center;
   }
 
   .via-header .empresa-label {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 7.5pt;
+    font-size: 8pt;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
     color: var(--text);
-    line-height: 1;
-    margin-bottom: 0;
   }
 
   .via-header .empresa-nome {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 26pt;
+    font-size: 28pt;
     font-weight: 900;
     text-transform: uppercase;
-    line-height: 0.9;
+    line-height: 0.95;
     letter-spacing: -1px;
-    margin: 0 0 2px 0;
+    margin: 2px 0;
     color: var(--black);
   }
 
   .via-header .empresa-end {
-    font-size: 7pt;
+    font-size: 7.5pt;
     color: var(--text);
   }
 
@@ -144,7 +131,7 @@
   .info-row {
     display: flex;
     border-bottom: 1px solid var(--border);
-    min-height: 18px;
+    min-height: 20px;
   }
 
   .info-row:last-child { border-bottom: none; }
@@ -152,23 +139,23 @@
   .info-lbl {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
-    font-size: 7pt;
+    font-size: 7.5pt;
     text-transform: uppercase;
-    padding: 2px 5px;
+    padding: 3px 6px;
     white-space: nowrap;
     display: flex;
     align-items: center;
     border-right: 1px solid var(--border);
     background: var(--white);
     color: var(--text-light);
-    min-width: 52px;
+    min-width: 56px;
     letter-spacing: 0.3px;
   }
 
   .info-val {
     flex: 1;
-    padding: 2px 5px;
-    font-size: 8pt;
+    padding: 3px 6px;
+    font-size: 9pt;
     display: flex;
     align-items: center;
     border-right: 1px solid var(--border);
@@ -176,20 +163,6 @@
   }
 
   .info-val:last-child { border-right: none; }
-
-  /* campo de data fixo para alinhar com obs na linha abaixo */
-  .info-val-data {
-    min-width: 65px;
-    max-width: 65px;
-    flex: none;
-  }
-
-  /* campo de VW fixo para alinhar com data */
-  .info-val-vw {
-    min-width: 65px;
-    max-width: 65px;
-    flex: none;
-  }
 
   /* ── TABELA PRODUTOS ── */
   .prod-table {
@@ -206,25 +179,23 @@
   .prod-table thead th {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
-    font-size: 7.5pt;
+    font-size: 8pt;
     text-transform: uppercase;
-    padding: 3px 5px;
+    padding: 4px 6px;
     text-align: left;
     letter-spacing: 0.3px;
   }
 
-  .prod-table thead th:first-child { width: 38px; text-align: center; }
-  .prod-table thead th:nth-child(3) { width: 54px; text-align: right; }
-  .prod-table thead th:nth-child(4) { width: 54px; text-align: right; }
+  .prod-table thead th:first-child { width: 44px; text-align: center; }
+  .prod-table thead th:nth-child(3) { width: 70px; text-align: right; }
+  .prod-table thead th:nth-child(4) { width: 70px; text-align: right; }
 
-  .prod-table tbody tr {
-    border-bottom: 1px solid var(--border);
-  }
+  .prod-table tbody tr { border-bottom: 1px solid var(--border); }
 
   .prod-table tbody td {
-    padding: 2px 5px;
-    font-size: 8pt;
-    height: 16px;
+    padding: 3px 6px;
+    font-size: 9pt;
+    height: 18px;
     color: var(--text);
   }
 
@@ -237,7 +208,7 @@
     border-top: 1.5px solid var(--border-dark);
     display: flex;
     align-items: stretch;
-    min-height: 24px;
+    min-height: 28px;
   }
 
   .footer-assinatura {
@@ -245,15 +216,14 @@
     display: flex;
     align-items: flex-end;
     border-right: 1px solid var(--border);
-    padding: 4px 8px 4px 6px;
+    padding: 4px 8px 5px 6px;
     gap: 6px;
-    min-height: 28px;
   }
 
   .footer-assinatura-lbl {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
-    font-size: 7pt;
+    font-size: 7.5pt;
     text-transform: uppercase;
     color: var(--text-light);
     white-space: nowrap;
@@ -264,6 +234,7 @@
   .footer-assinatura-linha {
     flex: 1;
     border-bottom: 1px solid var(--border-dark);
+    margin-bottom: 2px;
   }
 
   .footer-total {
@@ -276,7 +247,7 @@
     font-weight: 700;
     font-size: 7.5pt;
     text-transform: uppercase;
-    padding: 3px 7px;
+    padding: 4px 8px;
     border-right: 1px solid var(--border);
     color: var(--text-light);
     white-space: nowrap;
@@ -285,46 +256,65 @@
   .footer-total-val {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
-    font-size: 11pt;
-    padding: 3px 8px;
-    min-width: 75px;
+    font-size: 12pt;
+    padding: 4px 10px;
+    min-width: 80px;
     text-align: right;
     color: var(--black);
   }
 
-  /* ── PRINT ── */
+  /* ══════════════════════════════
+     IMPRESSÃO — A4 paisagem, lado a lado
+  ══════════════════════════════ */
   @media print {
-    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-    body { background: white; margin: 0; padding: 0; }
-    .screen-header { display: none !important; }
-    .page-wrapper {
-      padding: 0;
-      margin: 0;
-      display: block;
-      width: 100%;
+    * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
     }
-    .a4-page {
-      box-shadow: none;
-      margin: 0;
-      padding: 5mm;
-      gap: 6mm;
-      /* força dimensões A4 paisagem independente do dispositivo */
-      width: 297mm;
-      min-height: 210mm;
-      max-height: 210mm;
-      overflow: hidden;
-      /* escala para caber em qualquer viewport de impressão */
-      transform-origin: top left;
-    }
+
     @page {
       size: A4 landscape;
-      margin: 0;
+      margin: 6mm;
     }
-  }
 
-  /* escala dinâmica via JS para mobile — aplicada pela classe .print-scaled */
-  .print-scaled {
-    transform-origin: top left;
+    body { background: white; }
+
+    .screen-header { display: none !important; }
+
+    .page-wrapper {
+      display: flex;
+      flex-direction: row;        /* vias lado a lado */
+      gap: 6mm;
+      padding: 0;
+      align-items: stretch;
+      width: 100%;
+      height: 100%;
+    }
+
+    .via {
+      flex: 1;
+      max-width: none;
+      box-shadow: none;
+      font-size: 8pt;
+      /* garante que não quebre para segunda página */
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    /* ajusta tamanhos de fonte para caber no A4 */
+    .via-header .empresa-nome { font-size: 22pt; }
+    .via-header .empresa-label { font-size: 7pt; }
+    .via-header .empresa-end { font-size: 6.5pt; }
+    .info-lbl { font-size: 6.5pt; padding: 2px 4px; min-width: 48px; }
+    .info-val { font-size: 7.5pt; padding: 2px 4px; }
+    .info-row { min-height: 16px; }
+    .prod-table thead th { font-size: 7pt; padding: 2px 4px; }
+    .prod-table tbody td { font-size: 7.5pt; padding: 1px 4px; height: 14px; }
+    .prod-table thead th:first-child { width: 34px; }
+    .prod-table thead th:nth-child(3) { width: 54px; }
+    .prod-table thead th:nth-child(4) { width: 54px; }
+    .footer-total-val { font-size: 10pt; }
+    .footer-assinatura-lbl { font-size: 6.5pt; }
   }
 </style>
 </head>
@@ -337,115 +327,113 @@
   <button class="screen-btn btn-print" onclick="window.print()">Imprimir</button>
 </div>
 
-<!-- PÁGINA A4 -->
-<div class="page-wrapper">
-  <div class="a4-page" id="a4-page">
+<!-- VIAS -->
+<div class="page-wrapper" id="page-wrapper">
 
-    <!-- VIA 1 -->
-    <div class="via" id="via1">
-      <div class="via-header">
-        <div class="empresa-label">Depósito de Bebidas</div>
-        <div class="empresa-nome">Nenzinho</div>
-        <div class="empresa-end">Rua Manoel Pedra, 810 - Jardim Brasil</div>
+  <!-- VIA 1 -->
+  <div class="via" id="via1">
+    <div class="via-header">
+      <div class="empresa-label">Depósito de Bebidas</div>
+      <div class="empresa-nome">Nenzinho</div>
+      <div class="empresa-end">Rua Manoel Pedra, 810 - Jardim Brasil</div>
+    </div>
+    <div class="info-section">
+      <div class="info-row">
+        <div class="info-lbl">Cliente:</div>
+        <div class="info-val" id="v1-cliente"></div>
       </div>
-      <div class="info-section">
-        <div class="info-row">
-          <div class="info-lbl">Cliente:</div>
-          <div class="info-val" id="v1-cliente"></div>
-        </div>
-        <div class="info-row">
-          <div class="info-lbl">End:</div>
-          <div class="info-val" id="v1-end"></div>
-        </div>
-        <div class="info-row">
-          <div class="info-lbl">Tel:</div>
-          <div class="info-val" id="v1-tel"></div>
-          <div class="info-lbl" style="border-left:1px solid var(--border)">Data:</div>
-          <div class="info-val info-val-data" id="v1-data"></div>
-        </div>
-        <div class="info-row">
-          <div class="info-lbl">VW do Local</div>
-          <div class="info-val" id="v1-vw"></div>
-          <div class="info-lbl" style="border-left:1px solid var(--border)">Obs:</div>
-          <div class="info-val" id="v1-obs"></div>
-        </div>
+      <div class="info-row">
+        <div class="info-lbl">End:</div>
+        <div class="info-val" id="v1-end"></div>
       </div>
-      <table class="prod-table">
-        <thead>
-          <tr>
-            <th>Quant</th>
-            <th>Produto</th>
-            <th>Preço U.</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody id="v1-tbody"></tbody>
-      </table>
-      <div class="via-footer">
-        <div class="footer-assinatura">
-          <span class="footer-assinatura-lbl">Assinatura:</span>
-          <div class="footer-assinatura-linha"></div>
-        </div>
-        <div class="footer-total">
-          <div class="footer-total-lbl">Total</div>
-          <div class="footer-total-val" id="v1-total">R$ 0,00</div>
-        </div>
+      <div class="info-row">
+        <div class="info-lbl">Tel:</div>
+        <div class="info-val" id="v1-tel"></div>
+        <div class="info-lbl" style="border-left:1px solid var(--border)">Data:</div>
+        <div class="info-val" id="v1-data"></div>
+      </div>
+      <div class="info-row">
+        <div class="info-lbl">VW do Local</div>
+        <div class="info-val" id="v1-vw"></div>
+        <div class="info-lbl" style="border-left:1px solid var(--border)">Obs:</div>
+        <div class="info-val" id="v1-obs"></div>
       </div>
     </div>
-
-    <!-- VIA 2 -->
-    <div class="via" id="via2">
-      <div class="via-header">
-        <div class="empresa-label">Depósito de Bebidas</div>
-        <div class="empresa-nome">Nenzinho</div>
-        <div class="empresa-end">Rua Manoel Pedra, 810 - Jardim Brasil</div>
+    <table class="prod-table">
+      <thead>
+        <tr>
+          <th>Quant</th>
+          <th>Produto</th>
+          <th>Preço U.</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody id="v1-tbody"></tbody>
+    </table>
+    <div class="via-footer">
+      <div class="footer-assinatura">
+        <span class="footer-assinatura-lbl">Assinatura:</span>
+        <div class="footer-assinatura-linha"></div>
       </div>
-      <div class="info-section">
-        <div class="info-row">
-          <div class="info-lbl">Cliente:</div>
-          <div class="info-val" id="v2-cliente"></div>
-        </div>
-        <div class="info-row">
-          <div class="info-lbl">End:</div>
-          <div class="info-val" id="v2-end"></div>
-        </div>
-        <div class="info-row">
-          <div class="info-lbl">Tel:</div>
-          <div class="info-val" id="v2-tel"></div>
-          <div class="info-lbl" style="border-left:1px solid var(--border)">Data:</div>
-          <div class="info-val info-val-data" id="v2-data"></div>
-        </div>
-        <div class="info-row">
-          <div class="info-lbl">VW do Local</div>
-          <div class="info-val" id="v2-vw"></div>
-          <div class="info-lbl" style="border-left:1px solid var(--border)">Obs:</div>
-          <div class="info-val" id="v2-obs"></div>
-        </div>
-      </div>
-      <table class="prod-table">
-        <thead>
-          <tr>
-            <th>Quant</th>
-            <th>Produto</th>
-            <th>Preço U.</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody id="v2-tbody"></tbody>
-      </table>
-      <div class="via-footer">
-        <div class="footer-assinatura">
-          <span class="footer-assinatura-lbl">Assinatura:</span>
-          <div class="footer-assinatura-linha"></div>
-        </div>
-        <div class="footer-total">
-          <div class="footer-total-lbl">Total</div>
-          <div class="footer-total-val" id="v2-total">R$ 0,00</div>
-        </div>
+      <div class="footer-total">
+        <div class="footer-total-lbl">Total</div>
+        <div class="footer-total-val" id="v1-total">R$ 0,00</div>
       </div>
     </div>
-
   </div>
+
+  <!-- VIA 2 -->
+  <div class="via" id="via2">
+    <div class="via-header">
+      <div class="empresa-label">Depósito de Bebidas</div>
+      <div class="empresa-nome">Nenzinho</div>
+      <div class="empresa-end">Rua Manoel Pedra, 810 - Jardim Brasil</div>
+    </div>
+    <div class="info-section">
+      <div class="info-row">
+        <div class="info-lbl">Cliente:</div>
+        <div class="info-val" id="v2-cliente"></div>
+      </div>
+      <div class="info-row">
+        <div class="info-lbl">End:</div>
+        <div class="info-val" id="v2-end"></div>
+      </div>
+      <div class="info-row">
+        <div class="info-lbl">Tel:</div>
+        <div class="info-val" id="v2-tel"></div>
+        <div class="info-lbl" style="border-left:1px solid var(--border)">Data:</div>
+        <div class="info-val" id="v2-data"></div>
+      </div>
+      <div class="info-row">
+        <div class="info-lbl">VW do Local</div>
+        <div class="info-val" id="v2-vw"></div>
+        <div class="info-lbl" style="border-left:1px solid var(--border)">Obs:</div>
+        <div class="info-val" id="v2-obs"></div>
+      </div>
+    </div>
+    <table class="prod-table">
+      <thead>
+        <tr>
+          <th>Quant</th>
+          <th>Produto</th>
+          <th>Preço U.</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody id="v2-tbody"></tbody>
+    </table>
+    <div class="via-footer">
+      <div class="footer-assinatura">
+        <span class="footer-assinatura-lbl">Assinatura:</span>
+        <div class="footer-assinatura-linha"></div>
+      </div>
+      <div class="footer-total">
+        <div class="footer-total-lbl">Total</div>
+        <div class="footer-total-val" id="v2-total">R$ 0,00</div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <script>
@@ -493,7 +481,8 @@
   window.addEventListener('load', () => {
     const raw = localStorage.getItem('pedido_nenzinho');
     if (!raw) {
-      document.getElementById('a4-page').innerHTML = '<p style="padding:40px;color:#999">Nenhum pedido encontrado. Volte ao sistema e clique em Imprimir.</p>';
+      document.getElementById('page-wrapper').innerHTML =
+        '<p style="padding:40px;color:#999;text-align:center">Nenhum pedido encontrado. Volte ao sistema e clique em Imprimir.</p>';
       return;
     }
     try {
@@ -503,33 +492,6 @@
     } catch(e) {
       console.error(e);
     }
-  });
-
-  // Força escala correta na impressão para mobile
-  // A4 landscape = 297mm x 210mm = ~1122px x ~794px a 96dpi
-  const A4_W_PX = 1122;
-
-  function applyPrintScale() {
-    const page = document.getElementById('a4-page');
-    // usa largura disponível de impressão (pode ser portrait no mobile)
-    const printW = Math.min(window.innerWidth, window.screen.width);
-    const scale = printW < A4_W_PX ? printW / A4_W_PX : 1;
-    if (scale < 1) {
-      page.style.transform = `scale(${scale})`;
-      page.style.transformOrigin = 'top left';
-      // ajusta o wrapper para não criar scroll horizontal
-      document.querySelector('.page-wrapper').style.height = `${210 * scale}mm`;
-    } else {
-      page.style.transform = '';
-      document.querySelector('.page-wrapper').style.height = '';
-    }
-  }
-
-  window.addEventListener('beforeprint', applyPrintScale);
-  window.addEventListener('afterprint', () => {
-    const page = document.getElementById('a4-page');
-    page.style.transform = '';
-    document.querySelector('.page-wrapper').style.height = '';
   });
 </script>
 </body>
