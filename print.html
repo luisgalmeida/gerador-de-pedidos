@@ -294,20 +294,37 @@
 
   /* ── PRINT ── */
   @media print {
-    body { background: white; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    body { background: white; margin: 0; padding: 0; }
     .screen-header { display: none !important; }
-    .page-wrapper { padding: 0; }
+    .page-wrapper {
+      padding: 0;
+      margin: 0;
+      display: block;
+      width: 100%;
+    }
     .a4-page {
       box-shadow: none;
-      width: 297mm;
-      min-height: 210mm;
+      margin: 0;
       padding: 5mm;
       gap: 6mm;
+      /* força dimensões A4 paisagem independente do dispositivo */
+      width: 297mm;
+      min-height: 210mm;
+      max-height: 210mm;
+      overflow: hidden;
+      /* escala para caber em qualquer viewport de impressão */
+      transform-origin: top left;
     }
     @page {
       size: A4 landscape;
       margin: 0;
     }
+  }
+
+  /* escala dinâmica via JS para mobile — aplicada pela classe .print-scaled */
+  .print-scaled {
+    transform-origin: top left;
   }
 </style>
 </head>
@@ -486,6 +503,33 @@
     } catch(e) {
       console.error(e);
     }
+  });
+
+  // Força escala correta na impressão para mobile
+  // A4 landscape = 297mm x 210mm = ~1122px x ~794px a 96dpi
+  const A4_W_PX = 1122;
+
+  function applyPrintScale() {
+    const page = document.getElementById('a4-page');
+    // usa largura disponível de impressão (pode ser portrait no mobile)
+    const printW = Math.min(window.innerWidth, window.screen.width);
+    const scale = printW < A4_W_PX ? printW / A4_W_PX : 1;
+    if (scale < 1) {
+      page.style.transform = `scale(${scale})`;
+      page.style.transformOrigin = 'top left';
+      // ajusta o wrapper para não criar scroll horizontal
+      document.querySelector('.page-wrapper').style.height = `${210 * scale}mm`;
+    } else {
+      page.style.transform = '';
+      document.querySelector('.page-wrapper').style.height = '';
+    }
+  }
+
+  window.addEventListener('beforeprint', applyPrintScale);
+  window.addEventListener('afterprint', () => {
+    const page = document.getElementById('a4-page');
+    page.style.transform = '';
+    document.querySelector('.page-wrapper').style.height = '';
   });
 </script>
 </body>
